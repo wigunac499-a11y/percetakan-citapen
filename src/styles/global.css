@@ -21,14 +21,6 @@
   --color-gold: #c9a84c;
   --color-border: #ccc3ba;
   --color-border-light: #ddd6cf;
-
-  --color-ink-dark: #f5f0eb;
-  --color-ink-light-dark: #e0d8d0;
-  --color-paper-dark-bg: #1a1a1a;
-  --color-paper-dark-bg-alt: #222222;
-  --color-accent-dark-bg: #b04a4a;
-  --color-accent-light-dark: #c46a6a;
-  --color-border-dark: #333333;
 }
 
 @layer base {
@@ -117,23 +109,5 @@
       linear-gradient(var(--color-border-light) 1px, transparent 1px),
       linear-gradient(90deg, var(--color-border-light) 1px, transparent 1px);
     background-size: 4rem 4rem;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  body {
-    color: var(--color-accent-light-dark);
-    background-color: var(--color-paper-dark-bg);
-  }
-
-  ::selection {
-    background-color: var(--color-accent-dark-bg);
-    color: white;
-  }
-
-  .print-grid {
-    background-image:
-      linear-gradient(var(--color-border-dark) 1px, transparent 1px),
-      linear-gradient(90deg, var(--color-border-dark) 1px, transparent 1px);
   }
 }
