@@ -11,13 +11,13 @@ const { tag, title, description, align = 'center' } = Astro.props;
 
 <div class={`max-w-2xl ${align === 'center' ? 'mx-auto text-center' : ''}`}>
   {tag && (
-    <span class="inline-block font-mono text-xs uppercase tracking-[0.2em] text-accent mb-4">
+    <span class="inline-block text-xs font-semibold uppercase tracking-wider text-accent mb-3 px-3 py-1 bg-accent/5 rounded-full">
       {tag}
     </span>
   )}
-  <h2 class="text-3xl md:text-4xl lg:text-5xl text-balance">{title}</h2>
+  <h2 class="text-3xl md:text-4xl text-ink text-balance">{title}</h2>
   {description && (
-    <p class="mt-4 text-ink text-base md:text-lg leading-relaxed text-pretty">
+    <p class="mt-4 text-ink-light text-base md:text-lg leading-relaxed text-pretty">
       {description}
     </p>
   )}

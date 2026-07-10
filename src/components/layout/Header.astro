@@ -4,11 +4,10 @@ import { mainNavigation } from '../../data/navigation';
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="sticky top-0 z-50 border-b border-border bg-paper/95 backdrop-blur-sm">
-  <div class="container-custom flex items-center justify-between py-4">
-    <a href="/" class="flex items-center gap-2 font-serif text-xl font-bold tracking-tight no-underline">
-      <span class="text-accent">✦</span>
-      <span class="text-accent">Citapen Printing</span>
+<header class="sticky top-0 z-50 bg-white border-b border-border">
+  <div class="container-custom flex items-center justify-between h-16">
+    <a href="/" class="flex items-center gap-2 font-bold text-lg tracking-tight no-underline text-ink">
+      Citapen Printing
     </a>
 
     <nav class="hidden lg:flex items-center gap-1">
@@ -18,18 +17,18 @@ const currentPath = Astro.url.pathname;
             {
               item.children ? (
                 <>
-                  <span class="flex items-center gap-1 px-3 py-2 text-sm font-medium text-accent hover:text-ink cursor-default">
+                  <span class="flex items-center gap-1 px-3 py-2 text-sm font-medium text-ink-light hover:text-accent cursor-default transition-colors rounded-lg hover:bg-paper-dark">
                     {item.label}
                     <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <path d="M6 9l6 6 6-6" />
                     </svg>
                   </span>
-                  <div class="invisible group-hover:visible absolute left-0 top-full min-w-[200px] translate-y-1 rounded-sm border border-border bg-paper p-2 opacity-0 shadow-lg transition-all group-hover:translate-y-0 group-hover:opacity-100">
+                  <div class="invisible group-hover:visible absolute left-0 top-full min-w-[220px] translate-y-1 rounded-lg border border-border bg-white p-1.5 opacity-0 shadow-lg transition-all group-hover:translate-y-0 group-hover:opacity-100">
                     {
                       item.children.map((child) => (
                         <a
                           href={child.href}
-                          class="block rounded-sm px-3 py-2 text-sm text-accent hover:bg-muted-light hover:text-ink no-underline transition-colors"
+                          class="block rounded-md px-3 py-2 text-sm text-ink-light hover:bg-paper-dark hover:text-ink no-underline transition-colors"
                         >
                           {child.label}
                         </a>
@@ -40,10 +39,10 @@ const currentPath = Astro.url.pathname;
               ) : (
                 <a
                   href={item.href}
-                  class={`block px-3 py-2 text-sm font-medium no-underline transition-colors ${
+                  class={`block px-3 py-2 text-sm font-medium no-underline transition-colors rounded-lg ${
                     currentPath === item.href
-                      ? 'text-accent'
-                      : 'text-accent hover:text-ink'
+                      ? 'text-accent bg-accent/5'
+                      : 'text-ink-light hover:text-accent hover:bg-paper-dark'
                   }`}
                 >
                   {item.label}
@@ -58,15 +57,15 @@ const currentPath = Astro.url.pathname;
     <div class="flex items-center gap-3">
       <a
         href="/kontak"
-        class="hidden sm:inline-flex items-center gap-2 rounded-sm border border-accent bg-accent px-4 py-2 text-sm font-medium text-white no-underline transition-colors hover:bg-accent-light"
+        class="hidden sm:inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-white no-underline transition-colors hover:bg-accent-dark"
       >
         Konsultasi Gratis
-        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
           <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
         </svg>
       </a>
 
-      <button id="mobile-menu-toggle" class="lg:hidden p-2 text-ink" aria-label="Toggle menu">
+      <button id="mobile-menu-toggle" class="lg:hidden p-2 text-ink-light hover:text-ink" aria-label="Toggle menu">
         <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M4 6h16M4 12h16M4 18h16" />
         </svg>
@@ -74,18 +73,18 @@ const currentPath = Astro.url.pathname;
     </div>
   </div>
 
-  <div id="mobile-menu" class="hidden lg:hidden border-t border-border bg-paper">
+  <div id="mobile-menu" class="hidden lg:hidden border-t border-border bg-white">
     <nav class="container-custom py-4 space-y-1">
       {
         mainNavigation.map((item) => (
           item.children ? (
             <div class="space-y-1">
-              <span class="block px-3 py-2 text-sm font-semibold text-accent">{item.label}</span>
+              <span class="block px-3 py-2 text-sm font-semibold text-ink-light">{item.label}</span>
               <div class="ml-4 space-y-1">
                 {item.children.map((child) => (
                   <a
                     href={child.href}
-                    class="block px-3 py-2 text-sm text-accent hover:text-ink no-underline transition-colors"
+                    class="block px-3 py-2 text-sm text-ink-light hover:text-accent no-underline transition-colors"
                   >
                     {child.label}
                   </a>
@@ -96,7 +95,7 @@ const currentPath = Astro.url.pathname;
             <a
               href={item.href}
               class={`block px-3 py-2 text-sm font-medium no-underline transition-colors ${
-                currentPath === item.href ? 'text-accent' : 'text-accent hover:text-ink'
+                currentPath === item.href ? 'text-accent' : 'text-ink-light hover:text-accent'
               }`}
             >
               {item.label}
