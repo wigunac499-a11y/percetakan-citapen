@@ -8,18 +8,18 @@
 
   --color-ink: #1a1a1a;
   --color-ink-light: #262626;
-  --color-paper: #f5f0eb;
-  --color-paper-dark: #e8e0d8;
-  --color-paper-light: #faf7f3;
+  --color-paper: #f2ebe3;
+  --color-paper-dark: #e8ddd2;
+  --color-paper-light: #faf5ef;
   --color-accent: #8b3a3a;
   --color-accent-light: #b04a4a;
   --color-accent-dark: #6a2a2a;
   --color-warm: #a67c52;
   --color-warm-light: #c4a078;
-  --color-muted: #a8988e;
+  --color-muted: #8a7a6e;
   --color-muted-light: #d4c9c0;
   --color-gold: #c9a84c;
-  --color-border: #ccc3ba;
+  --color-border: #c4b8ac;
   --color-border-light: #ddd6cf;
 }
 
@@ -36,6 +36,8 @@
     font-family: var(--font-sans);
     color: var(--color-accent);
     background-color: var(--color-paper);
+    background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E");
+    background-blend-mode: overlay;
     line-height: 1.6;
   }
 
@@ -48,6 +50,10 @@
   ::selection {
     background-color: var(--color-accent);
     color: white;
+  }
+
+  hr {
+    border-color: var(--color-border);
   }
 }
 
@@ -109,5 +115,51 @@
       linear-gradient(var(--color-border-light) 1px, transparent 1px),
       linear-gradient(90deg, var(--color-border-light) 1px, transparent 1px);
     background-size: 4rem 4rem;
+  }
+
+  .ink-bleed {
+    position: relative;
+  }
+
+  .ink-bleed::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border: 1px solid var(--color-accent);
+    opacity: 0.08;
+    pointer-events: none;
+  }
+
+  .paper-edge {
+    box-shadow:
+      0 1px 2px rgba(0,0,0,0.06),
+      0 0 0 1px var(--color-border-light),
+      inset 0 0 0 1px rgba(255,255,255,0.5);
+  }
+
+  .card-shadow {
+    box-shadow:
+      0 1px 3px rgba(0,0,0,0.06),
+      0 0 0 1px var(--color-border-light);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+
+  .card-shadow:hover {
+    box-shadow:
+      0 4px 12px rgba(0,0,0,0.08),
+      0 0 0 1px var(--color-border);
+    transform: translateY(-2px);
+  }
+
+  .divider-accent {
+    height: 2px;
+    background: var(--color-accent);
+    width: 3rem;
+    opacity: 0.3;
+  }
+
+  .stamp-border {
+    border: 2px dashed var(--color-accent);
+    opacity: 0.15;
   }
 }

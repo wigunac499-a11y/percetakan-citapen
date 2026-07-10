@@ -7,6 +7,6 @@ interface Props {
 const { className = '', hover = true } = Astro.props;
 ---
 
-<div class={`rounded-sm border border-border bg-paper-light p-6 ${hover ? 'transition-all duration-200 hover:shadow-md hover:-translate-y-0.5' : ''} ${className}`}>
+<div class={`rounded-sm bg-paper-light p-6 card-shadow ${hover ? 'cursor-pointer' : ''} ${className}`}>
   <slot />
 </div>
