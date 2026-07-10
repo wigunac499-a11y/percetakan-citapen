@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import Card from '../components/ui/Card.astro';
+import CTA from '../components/sections/CTA.astro';
+import { breadcrumbSchema, localBusinessSchema } from '../lib/schema';
+
+const breadcrumbs = [
+  { name: 'Beranda', url: 'https://percetakan.citapen.com/' },
+  { name: 'Tentang', url: 'https://percetakan.citapen.com/tentang' },
+];
+---
+
+<BaseLayout
+  title="Tentang Citapen Printing"
+  description="Kenali lebih dekat Citapen Printing — percetakan undangan dan foto di Bandung Barat. Berdiri sejak 2015, melayani ribuan pelanggan dengan hasil cetak berkualitas."
+  breadcrumbs={breadcrumbs}
+  jsonLd={[
+    breadcrumbSchema(breadcrumbs),
+    localBusinessSchema({
+      name: 'Citapen Printing',
+      description: 'Percetakan undangan pernikahan dan cetak foto custom di Bandung Barat. Berdiri sejak 2015.',
+      url: 'https://percetakan.citapen.com',
+      telephone: '+6281234567890',
+      address: {
+        street: 'Jl. Raya Citapen No. 123',
+        city: 'Bandung Barat',
+        region: 'Jawa Barat',
+        postalCode: '40512',
+        country: 'ID',
+      },
+      openingHours: ['Senin-Sabtu 08:00-17:00'],
+    }),
+  ]}
+>
+  <section class="section-padding border-b border-border">
+    <div class="container-custom">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <SectionHeading
+            tag="Tentang"
+            title="Cerita Kami"
+            description=""
+            align="left"
+          />
+          <div class="mt-6 space-y-4 text-accent leading-relaxed">
+            <p>
+              Citapen Printing lahir dari kecintaan terhadap dunia percetakan dan keinginan 
+              untuk membantu setiap momen spesial terabadikan dalam cetakan berkualitas. 
+              Berdiri sejak 2015 di Bandung Barat, kami memulai perjalanan dari sebuah 
+              studio kecil dengan satu mesin cetak.
+            </p>
+            <p>
+              Selama bertahun-tahun, kami telah melayani ribuan pelanggan — dari pasangan 
+              yang mempersiapkan hari pernikahan mereka, keluarga yang ingin mengabadikan 
+              momen berharga dalam album foto, hingga UMKM yang membutuhkan cetak banner 
+              dan materi promosi.
+            </p>
+            <p>
+              Yang membedakan kami adalah perhatian pada detail. Setiap pesanan dikerjakan 
+              dengan tangan, diperiksa kualitasnya sebelum dikirim, dan selalu ada sentuhan 
+              personal dari tim kami. Pelanggan bukan sekadar nomor order — mereka adalah 
+              bagian dari cerita yang kami bantu wujudkan.
+            </p>
+          </div>
+        </div>
+        <div class="aspect-[4/5] border border-border bg-paper-dark overflow-hidden">
+          <img
+            src="https://picsum.photos/seed/studio-citapen/600/750"
+            alt="Studio Citapen Printing Bandung Barat"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding border-b border-border">
+    <div class="container-custom">
+      <h3 class="text-2xl font-serif font-semibold text-center mb-12">Nilai-Nilai Kami</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {[
+          { num: '01', title: 'Kualitas', desc: 'Setiap cetakan melewati kontrol kualitas ketat sebelum sampai ke tangan pelanggan.' },
+          { num: '02', title: 'Ketepatan Waktu', desc: 'Kami menghargai waktu Anda. Kami berkomitmen menyelesaikan pesanan sesuai janji.' },
+          { num: '03', title: 'Pelayanan Personal', desc: 'Konsultasi satu-satu untuk memastikan hasil sesuai harapan Anda.' },
+        ].map((v) => (
+          <Card key={v.num}>
+            <span class="font-mono text-3xl font-bold text-accent/30">{v.num}</span>
+            <h4 class="mt-3 font-serif text-xl font-semibold">{v.title}</h4>
+            <p class="mt-2 text-sm text-accent">{v.desc}</p>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container-custom text-center">
+      <h3 class="text-2xl font-serif font-semibold mb-4">Berdiri Sejak 2015</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-10">
+        {[
+          { num: '5.000+', label: 'Pesanan Selesai' },
+          { num: '2.500+', label: 'Pelanggan Puas' },
+          { num: '50+', label: 'Jenis Kertas' },
+          { num: '9 Tahun', label: 'Pengalaman' },
+        ].map((s) => (
+          <div key={s.label}>
+            <p class="font-serif text-3xl md:text-4xl font-bold text-accent">{s.num}</p>
+            <p class="mt-1 text-sm text-accent">{s.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>

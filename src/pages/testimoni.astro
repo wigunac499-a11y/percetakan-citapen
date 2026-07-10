@@ -1,0 +1,148 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import Card from '../components/ui/Card.astro';
+import CTA from '../components/sections/CTA.astro';
+import { breadcrumbSchema, reviewSchema } from '../lib/schema';
+
+const breadcrumbs = [
+  { name: 'Beranda', url: 'https://percetakan.citapen.com/' },
+  { name: 'Testimoni', url: 'https://percetakan.citapen.com/testimoni' },
+];
+
+const testimonials = [
+  {
+    name: 'Rina & Andi',
+    text: 'Undangan pernikahan kami jadi jauh lebih cantik dari yang dibayangkan! Detail cetakannya rapi, kertasnya berkualitas, dan pengirimannya tepat waktu. Terima kasih Citapen Printing!',
+    rating: 5,
+    label: 'Undangan Pernikahan',
+    date: 'Maret 2026',
+  },
+  {
+    name: 'Bu Dewi',
+    text: 'Cetak foto keluarga untuk album kenangan hasilnya sangat memuaskan. Warnanya akurat dan bahannya bagus. Pasti akan order lagi untuk kebutuhan cetak lainnya.',
+    rating: 5,
+    label: 'Cetak Foto',
+    date: 'Februari 2026',
+  },
+  {
+    name: 'Mas Hendra',
+    text: 'Sudah beberapa kali cetak undangan di sini, hasilnya selalu konsisten bagus. Proses konsultasinya juga sangat membantu dalam memilih bahan dan desain.',
+    rating: 5,
+    label: 'Cetak Undangan',
+    date: 'Januari 2026',
+  },
+  {
+    name: 'Sarah & Dika',
+    text: 'Proses dari konsultasi sampai jadi sangat lancar. Tim Citapen sabar banget ngebantu kami milih desain yang pas. Hasilnya undangan akad kami elegan dan beda dari yang lain!',
+    rating: 5,
+    label: 'Undangan Akad',
+    date: 'Desember 2025',
+  },
+  {
+    name: 'Pak Agus',
+    text: 'Cetak banner untuk grand opening toko saya. Cepet jadi, kualitas bagus, harganya juga bersahabat. Rekomendasi banget untuk kebutuhan cetak di Bandung Barat.',
+    rating: 5,
+    label: 'Banner & Spanduk',
+    date: 'November 2025',
+  },
+  {
+    name: 'Mba Fitri',
+    text: 'Album foto hardcovernya premium banget! Sampulnya kokoh, jilidnya rapi, dan cetakan foto di dalamnya sharp. Sangat puas dengan hasilnya.',
+    rating: 5,
+    label: 'Album Foto',
+    date: 'Oktober 2025',
+  },
+  {
+    name: 'Keluarga Pak RT',
+    text: 'Cetak foto untuk kenangan acara 17-an desa. Hasilnya bagus semua, warna cerah, dan pengiriman tepat waktu. Harga terjangkau untuk pesanan banyak.',
+    rating: 4,
+    label: 'Cetak Foto',
+    date: 'Agustus 2025',
+  },
+  {
+    name: 'Dinda & Galih',
+    text: 'Undangan pernikahan kami dibuat dengan teknik hot stamping, hasilnya mewah banget! Tamu-tamu pada komentar undangannya cantik. Thank you Citapen!',
+    rating: 5,
+    label: 'Undangan Hot Stamping',
+    date: 'Juli 2025',
+  },
+];
+---
+
+<BaseLayout
+  title="Testimoni Pelanggan Citapen Printing"
+  description="Baca ulasan dan testimoni asli dari pelanggan Citapen Printing. Kepuasan mereka adalah bukti kualitas cetak undangan dan foto kami."
+  breadcrumbs={breadcrumbs}
+  jsonLd={[
+    breadcrumbSchema(breadcrumbs),
+    ...testimonials.slice(0, 3).map((t) =>
+      reviewSchema({
+        author: t.name,
+        reviewBody: t.text,
+        ratingValue: t.rating,
+        itemReviewed: 'Citapen Printing',
+      })
+    ),
+  ]}
+>
+  <section class="section-padding border-b border-border">
+    <div class="container-custom">
+      <SectionHeading
+        tag="Testimoni"
+        title="Apa Kata Mereka"
+        description="Lebih dari 2.500 pelanggan telah mempercayakan kebutuhan cetaknya kepada kami. Berikut beberapa cerita mereka."
+      />
+
+      <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+        {testimonials.map((t) => (
+          <Card key={t.name}>
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex gap-1">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <svg key={i} class={`w-4 h-4 ${i < t.rating ? 'text-gold' : 'text-muted'}`} viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                ))}
+              </div>
+              <span class="font-mono text-xs text-accent">{t.date}</span>
+            </div>
+            <blockquote class="text-sm text-accent leading-relaxed">
+              "{t.text}"
+            </blockquote>
+            <div class="mt-4 pt-4 border-t border-border">
+              <p class="text-sm font-semibold text-ink">{t.name}</p>
+              <p class="text-xs text-accent">{t.label}</p>
+            </div>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container-custom max-w-xl mx-auto text-center">
+      <h3 class="text-2xl font-serif font-semibold">Bagikan Pengalaman Anda</h3>
+      <p class="mt-3 text-sm">
+        Puas dengan layanan kami? Bagikan cerita Anda dan bantu orang lain
+        menemukan percetakan terpercaya.
+      </p>
+      <div class="mt-6 flex justify-center gap-3">
+        <a
+          href="#"
+          class="inline-flex items-center gap-2 rounded-sm border border-accent bg-accent px-5 py-2.5 text-sm font-medium text-white no-underline transition-colors hover:bg-accent-light"
+        >
+          Tulis Testimoni
+        </a>
+        <a
+          href="https://wa.me/6281234567890"
+          class="inline-flex items-center gap-2 rounded-sm border border-border bg-paper px-5 py-2.5 text-sm font-medium text-ink no-underline transition-colors hover:bg-paper-dark"
+        >
+          Chat via WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>

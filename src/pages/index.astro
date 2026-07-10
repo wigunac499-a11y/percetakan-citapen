@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import Services from '../components/sections/Services.astro';
+import PortfolioPreview from '../components/sections/PortfolioPreview.astro';
+import Testimonials from '../components/sections/Testimonials.astro';
+import CTA from '../components/sections/CTA.astro';
+import { localBusinessSchema } from '../lib/schema';
+---
+
+<BaseLayout
+  title="Cetak Undangan & Foto Custom Bandung Barat"
+  description="Citapen Printing — jasa percetakan undangan pernikahan dan foto di Bandung Barat. Kualitas terbaik, harga bersahabat, konsultasi gratis."
+  jsonLd={[
+    localBusinessSchema({
+      name: 'Citapen Printing',
+      description: 'Percetakan undangan pernikahan dan cetak foto custom di Bandung Barat.',
+      url: 'https://percetakan.citapen.com',
+      telephone: '+6281234567890',
+      address: {
+        street: 'Jl. Raya Citapen No. 123',
+        city: 'Bandung Barat',
+        region: 'Jawa Barat',
+        postalCode: '40512',
+        country: 'ID',
+      },
+      openingHours: ['Senin-Sabtu 08:00-17:00'],
+    }),
+  ]}
+>
+  <Hero />
+  <Services />
+  <PortfolioPreview />
+  <Testimonials />
+  <CTA />
+</BaseLayout>

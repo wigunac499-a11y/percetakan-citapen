@@ -1,0 +1,80 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+import Card from '../ui/Card.astro';
+---
+
+<section class="section-padding border-b border-border">
+  <div class="container-custom">
+    <SectionHeading
+      tag="Layanan"
+      title="Jasa Percetakan Kami"
+      description="Dari undangan pernikahan custom hingga cetak foto berkualitas tinggi — kami siap mewujudkan kebutuhan cetak Anda."
+    />
+
+    <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <Card>
+        <div class="flex items-start gap-4">
+          <div class="shrink-0 w-12 h-12 rounded-sm border border-border bg-paper flex items-center justify-center">
+            <svg class="w-6 h-6 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 6v12M6 12h12" />
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-xl font-serif font-semibold">
+              <a href="/layanan/cetak-undangan" class="no-underline hover:text-accent transition-colors">
+                Cetak Undangan
+              </a>
+            </h3>
+            <p class="mt-2 text-sm text-accent leading-relaxed">
+              Undangan pernikahan, akad, tunangan, dan acara spesial lainnya.
+              Tersedia berbagai teknik cetak: offset, digital printing, letterpress, 
+              dan hot stamping dengan pilihan kertas premium.
+            </p>
+            <a
+              href="/layanan/cetak-undangan"
+              class="inline-flex items-center gap-1 mt-4 text-sm font-medium text-accent no-underline hover:underline"
+            >
+              Selengkapnya
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </Card>
+
+      <Card>
+        <div class="flex items-start gap-4">
+          <div class="shrink-0 w-12 h-12 rounded-sm border border-border bg-paper flex items-center justify-center">
+            <svg class="w-6 h-6 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <path d="M21 15l-5-5L5 21" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-xl font-serif font-semibold">
+              <a href="/layanan/cetak-foto" class="no-underline hover:text-accent transition-colors">
+                Cetak Foto
+              </a>
+            </h3>
+            <p class="mt-2 text-sm text-accent leading-relaxed">
+              Cetak foto berkualitas tinggi dalam berbagai ukuran dan media.
+              Dari cetak foto standar, kanvas, album foto, hingga bingkai siap pajang.
+            </p>
+            <a
+              href="/layanan/cetak-foto"
+              class="inline-flex items-center gap-1 mt-4 text-sm font-medium text-accent no-underline hover:underline"
+            >
+              Selengkapnya
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </Card>
+    </div>
+  </div>
+</section>

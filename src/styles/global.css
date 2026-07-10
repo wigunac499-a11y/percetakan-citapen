@@ -1,0 +1,139 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-serif: "Playfair Display", "Georgia", serif;
+  --font-sans: "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+
+  --color-ink: #1a1a1a;
+  --color-ink-light: #262626;
+  --color-paper: #f5f0eb;
+  --color-paper-dark: #e8e0d8;
+  --color-paper-light: #faf7f3;
+  --color-accent: #8b3a3a;
+  --color-accent-light: #b04a4a;
+  --color-accent-dark: #6a2a2a;
+  --color-warm: #a67c52;
+  --color-warm-light: #c4a078;
+  --color-muted: #a8988e;
+  --color-muted-light: #d4c9c0;
+  --color-gold: #c9a84c;
+  --color-border: #ccc3ba;
+  --color-border-light: #ddd6cf;
+
+  --color-ink-dark: #f5f0eb;
+  --color-ink-light-dark: #e0d8d0;
+  --color-paper-dark-bg: #1a1a1a;
+  --color-paper-dark-bg-alt: #222222;
+  --color-accent-dark-bg: #b04a4a;
+  --color-accent-light-dark: #c46a6a;
+  --color-border-dark: #333333;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-accent);
+    background-color: var(--color-paper);
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: white;
+  }
+}
+
+@layer components {
+  .container-custom {
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-custom {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .prose-custom {
+    max-width: 65ch;
+    line-height: 1.8;
+  }
+
+  .section-padding {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-padding {
+      padding-top: 7rem;
+      padding-bottom: 7rem;
+    }
+  }
+
+  .link-underline {
+    background-image: linear-gradient(var(--color-accent), var(--color-accent));
+    background-size: 0% 2px;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    transition: background-size 0.3s ease;
+  }
+
+  .link-underline:hover {
+    background-size: 100% 2px;
+  }
+
+  .print-grid {
+    background-image:
+      linear-gradient(var(--color-border-light) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-border-light) 1px, transparent 1px);
+    background-size: 4rem 4rem;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: var(--color-accent-light-dark);
+    background-color: var(--color-paper-dark-bg);
+  }
+
+  ::selection {
+    background-color: var(--color-accent-dark-bg);
+    color: white;
+  }
+
+  .print-grid {
+    background-image:
+      linear-gradient(var(--color-border-dark) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-border-dark) 1px, transparent 1px);
+  }
+}

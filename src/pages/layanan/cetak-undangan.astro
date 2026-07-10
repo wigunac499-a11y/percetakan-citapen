@@ -1,0 +1,140 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeading from '../../components/ui/SectionHeading.astro';
+import Card from '../../components/ui/Card.astro';
+import CTA from '../../components/sections/CTA.astro';
+import { serviceSchema, breadcrumbSchema } from '../../lib/schema';
+
+const breadcrumbs = [
+  { name: 'Beranda', url: 'https://percetakan.citapen.com/' },
+  { name: 'Cetak Undangan', url: 'https://percetakan.citapen.com/layanan/cetak-undangan' },
+];
+---
+
+<BaseLayout
+  title="Cetak Undangan Custom Bandung Barat"
+  description="Jasa cetak undangan pernikahan, akad, tunangan custom di Bandung Barat. Pilihan kertas premium, teknik cetak offset/digital/letterpress, desain gratis."
+  breadcrumbs={breadcrumbs}
+  jsonLd={[
+    breadcrumbSchema(breadcrumbs),
+    serviceSchema({
+      name: 'Cetak Undangan Custom',
+      description: 'Jasa cetak undangan pernikahan, akad, tunangan, dan acara spesial dengan pilihan kertas premium dan berbagai teknik cetak.',
+      provider: 'Citapen Printing',
+      url: 'https://percetakan.citapen.com/layanan/cetak-undangan',
+    }),
+  ]}
+>
+  <div class="print-grid absolute inset-0 opacity-20 pointer-events-none" />
+
+  <section class="section-padding border-b border-border">
+    <div class="container-custom">
+      <SectionHeading
+        tag="Layanan"
+        title="Cetak Undangan Custom"
+        description="Setiap undangan adalah kesan pertama acara spesial Anda. Kami hadirkan hasil cetak yang mencerminkan keistimewaan momen Anda."
+        align="left"
+      />
+
+      <div class="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div>
+          <div class="aspect-[4/3] border border-border bg-paper-dark overflow-hidden mb-8">
+            <img
+              src="https://picsum.photos/seed/contoh-undangan/800/600"
+              alt="Contoh cetak undangan pernikahan custom"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-2xl font-serif font-semibold">Jenis Undangan</h3>
+          <ul class="mt-6 space-y-4">
+            {[
+              { title: 'Undangan Pernikahan', desc: 'Kartu undangan pernikahan, akad nikah, resepsi, dan bridal shower. Tersedia model lipat, standing, dan insert.' },
+              { title: 'Undangan Tunangan', desc: 'Undangan acara lamaran dan pertunangan dengan desain elegan dan modern.' },
+              { title: 'Undangan Khitanan', desc: 'Undangan aqiqah dan khitanan dengan desain ceria dan islami.' },
+              { title: 'Undangan Ulang Tahun', desc: 'Undangan pesta ulang tahun anak maupun dewasa dengan tema bebas.' },
+            ].map((item) => (
+              <li class="flex gap-3">
+                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                <div>
+                  <strong class="text-sm">{item.title}</strong>
+                  <p class="text-sm text-accent mt-0.5">{item.desc}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding border-b border-border">
+    <div class="container-custom">
+      <h3 class="text-2xl font-serif font-semibold text-center mb-12">Pilihan Kertas & Finishing</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[
+          { name: 'Art Paper', desc: 'Kertas halus mengkilap, cocok untuk cetak foto dan warna solid. Tersedia ukuran 120gsm - 310gsm.' },
+          { name: 'Matt Paper', desc: 'Kertas doff non-reflektif, memberi kesan elegan dan premium. Ukuran 150gsm - 310gsm.' },
+          { name: 'BC (Bristol) / Ivory', desc: 'Kertas tebal dengan tekstur natural. Ideal untuk undangan lipat dan standing.' },
+          { name: 'Jasmine / Linen', desc: 'Kertas bertekstur serat, memberi kesan klasik dan mewah.' },
+          { name: 'Kraft / Samson', desc: 'Kertas daur ulang dengan nuansa vintage dan natural.' },
+          { name: 'Hardcover / Custom', desc: 'Material kaku untuk sampul undangan eksklusif.' },
+        ].map((p) => (
+          <Card key={p.name}>
+            <h4 class="font-serif font-semibold text-lg">{p.name}</h4>
+            <p class="mt-2 text-sm text-accent">{p.desc}</p>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding border-b border-border">
+    <div class="container-custom">
+      <h3 class="text-2xl font-serif font-semibold text-center mb-12">Teknik Cetak</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {[
+          { title: 'Offset Printing', desc: 'Cetak dalam jumlah besar dengan kualitas warna konsisten dan biaya per unit yang lebih murah.' },
+          { title: 'Digital Printing', desc: 'Cetak cepat tanpa minimum order. Cocok untuk undangan jumlah terbatas atau custom per piece.' },
+          { title: 'Letterpress / Hot Stamping', desc: 'Cetak timbul dengan foil emas/perak untuk kesan eksklusif dan mewah.' },
+        ].map((t) => (
+          <div key={t.title} class="text-center p-6">
+            <h4 class="font-serif font-semibold text-lg">{t.title}</h4>
+            <p class="mt-3 text-sm text-accent">{t.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container-custom">
+      <h3 class="text-2xl font-serif font-semibold text-center mb-8">Yang Sering Ditanyakan</h3>
+      <div class="max-w-3xl mx-auto space-y-4">
+        {[
+          { q: 'Berapa minimal pemesanan undangan?', a: 'Minimal pemesanan 50 pcs untuk cetak offset. Untuk digital printing, minimal 10 pcs.' },
+          { q: 'Apakah menyediakan jasa desain?', a: 'Ya, kami menyediakan jasa desain gratis untuk pemesanan undangan. Konsultasikan konsep Anda dengan tim kami.' },
+          { q: 'Berapa lama proses pengerjaan?', a: 'Estimasi pengerjaan 3-7 hari kerja tergantung jumlah dan kerumitan desain.' },
+          { q: 'Apakah bisa kirim sample kertas?', a: 'Tentu, kami menyediakan sample kertas yang bisa Anda lihat langsung di studio atau kami kirimkan.' },
+        ].map((faq, i) => (
+          <details class="group border border-border rounded-sm">
+            <summary class="flex items-center justify-between p-4 cursor-pointer text-sm font-medium hover:bg-paper-dark transition-colors">
+              {faq.q}
+              <svg class="w-4 h-4 text-accent group-open:rotate-180 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </summary>
+            <div class="p-4 pt-0 text-sm text-accent">
+              <p class="mt-2">{faq.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>

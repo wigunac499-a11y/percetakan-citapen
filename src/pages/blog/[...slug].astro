@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+import { breadcrumbSchema } from '../../lib/schema';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const breadcrumbs = [
+  { name: 'Beranda', url: 'https://percetakan.citapen.com/' },
+  { name: 'Blog', url: 'https://percetakan.citapen.com/blog' },
+  { name: post.data.title, url: `https://percetakan.citapen.com/blog/${post.id}` },
+];
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  breadcrumbs={breadcrumbs}
+  jsonLd={[breadcrumbSchema(breadcrumbs)]}
+  ogType="article"
+>
+  <article class="section-padding">
+    <div class="container-custom max-w-3xl">
+      <a href="/blog" class="inline-flex items-center gap-1 text-sm text-accent hover:text-accent no-underline transition-colors mb-8">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7" />
+        </svg>
+        Kembali ke Blog
+      </a>
+
+      <header class="mb-10">
+        <div class="flex flex-wrap gap-2 mb-4">
+          {post.data.tags?.map((tag) => (
+            <span class="inline-block font-mono text-[10px] uppercase tracking-wider text-accent border border-accent/30 px-2 py-0.5 rounded-sm">
+              {tag}
+            </span>
+          ))}
+        </div>
+        <h1 class="text-4xl md:text-5xl font-serif font-bold text-balance">{post.data.title}</h1>
+        <div class="mt-4 flex items-center gap-4 text-sm text-accent">
+          <span>Oleh {post.data.author}</span>
+          <span class="w-1 h-1 rounded-full bg-muted" />
+          <time datetime={post.data.pubDate.toISOString()}>
+            {post.data.pubDate.toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </time>
+        </div>
+      </header>
+
+      <div class="prose prose-sm prose-custom max-w-none">
+        <Content />
+      </div>
+
+      <div class="mt-16 pt-8 border-t border-border">
+        <a
+          href="/blog"
+          class="inline-flex items-center gap-1 text-sm text-accent no-underline hover:underline"
+        >
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+          Artikel Lainnya
+        </a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

@@ -1,0 +1,156 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeading from '../../components/ui/SectionHeading.astro';
+import Card from '../../components/ui/Card.astro';
+import CTA from '../../components/sections/CTA.astro';
+import { serviceSchema, breadcrumbSchema } from '../../lib/schema';
+
+const breadcrumbs = [
+  { name: 'Beranda', url: 'https://percetakan.citapen.com/' },
+  { name: 'Cetak Foto', url: 'https://percetakan.citapen.com/layanan/cetak-foto' },
+];
+---
+
+<BaseLayout
+  title="Cetak Foto Custom Bandung Barat"
+  description="Jasa cetak foto berkualitas tinggi di Bandung Barat. Tersedia cetak foto standar, kanvas, album foto, bingkai. Harga bersahabat, hasil memuaskan."
+  breadcrumbs={breadcrumbs}
+  jsonLd={[
+    breadcrumbSchema(breadcrumbs),
+    serviceSchema({
+      name: 'Cetak Foto Custom',
+      description: 'Jasa cetak foto berkualitas tinggi dalam berbagai ukuran dan media, termasuk kanvas, album foto, dan bingkai siap pajang.',
+      provider: 'Citapen Printing',
+      url: 'https://percetakan.citapen.com/layanan/cetak-foto',
+    }),
+  ]}
+>
+  <section class="section-padding border-b border-border">
+    <div class="container-custom">
+      <SectionHeading
+        tag="Layanan"
+        title="Cetak Foto Custom"
+        description="Abadikan momen berharga Anda dalam cetakan berkualitas tinggi. Berbagai pilihan ukuran dan media untuk hasil terbaik."
+        align="left"
+      />
+
+      <div class="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div>
+          <div class="aspect-[4/3] border border-border bg-paper-dark overflow-hidden mb-8">
+            <img
+              src="https://picsum.photos/seed/contoh-cetak-foto/800/600"
+              alt="Contoh cetak foto berkualitas tinggi"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-2xl font-serif font-semibold">Layanan Cetak Foto</h3>
+          <ul class="mt-6 space-y-4">
+            {[
+              { title: 'Cetak Foto Standar', desc: 'Ukuran 2R hingga 16R dengan kertas berkualitas tinggi. Cocok untuk dokumentasi dan pajangan.' },
+              { title: 'Cetak Kanvas', desc: 'Foto dicetak di media kanvas dengan stretcher frame siap gantung. Tersedia berbagai ukuran.' },
+              { title: 'Album Foto', desc: 'Buku foto premium dengan jilid hardcover. Pilihan ukuran A4, A5, dan square.' },
+              { title: 'Bingkai Foto', desc: 'Bingkai siap pajang dengan pilihan warna hitam, putih, atau coklat.' },
+              { title: 'Cetak Ukuran Besar', desc: 'Poster dan banner ukuran besar untuk dekorasi acara atau kebutuhan komersial.' },
+            ].map((item) => (
+              <li class="flex gap-3">
+                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                <div>
+                  <strong class="text-sm">{item.title}</strong>
+                  <p class="text-sm text-accent mt-0.5">{item.desc}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding border-b border-border">
+    <div class="container-custom">
+      <h3 class="text-2xl font-serif font-semibold text-center mb-12">Ukuran Cetak Foto</h3>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="border-b border-border">
+              <th class="text-left py-3 px-4 font-semibold text-ink">Ukuran</th>
+              <th class="text-left py-3 px-4 font-semibold text-ink">Cm</th>
+              <th class="text-left py-3 px-4 font-semibold text-ink">Inchi</th>
+              <th class="text-left py-3 px-4 font-semibold text-ink">Harga</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              { size: '2R', cm: '6 x 9', inch: '2.3 x 3.5', price: 'Rp 3.000' },
+              { size: '3R', cm: '8.9 x 12.7', inch: '3.5 x 5', price: 'Rp 5.000' },
+              { size: '4R', cm: '10.2 x 15.2', inch: '4 x 6', price: 'Rp 7.000' },
+              { size: '5R', cm: '12.7 x 17.8', inch: '5 x 7', price: 'Rp 10.000' },
+              { size: '6R', cm: '15.2 x 20.3', inch: '6 x 8', price: 'Rp 15.000' },
+              { size: '8R', cm: '20.3 x 25.4', inch: '8 x 10', price: 'Rp 25.000' },
+              { size: '10R', cm: '25.4 x 30.5', inch: '10 x 12', price: 'Rp 40.000' },
+              { size: '12R', cm: '30.5 x 38.1', inch: '12 x 15', price: 'Rp 60.000' },
+            ].map((row) => (
+              <tr key={row.size} class="border-b border-border hover:bg-paper-dark transition-colors">
+                <td class="py-3 px-4 font-medium text-ink">{row.size}</td>
+                <td class="py-3 px-4 text-ink">{row.cm}</td>
+                <td class="py-3 px-4 text-ink">{row.inch}</td>
+                <td class="py-3 px-4 font-medium text-accent">{row.price}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-4 text-xs text-ink">* Harga dapat berubah sewaktu-waktu. Hubungi kami untuk harga terbaru dan pesanan dalam jumlah banyak.</p>
+    </div>
+  </section>
+
+  <section class="section-padding border-b border-border">
+    <div class="container-custom">
+      <h3 class="text-2xl font-serif font-semibold text-center mb-12">Media Cetak</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {[
+          { title: 'Kertas Foto Glossy', desc: 'Permukaan mengkilap dengan reproduksi warna tajam. Ideal untuk foto potret dan pemandangan.' },
+          { title: 'Kertas Foto Matt', desc: 'Permukaan doff non-reflektif. Cocok untuk foto hitam putih atau tampilan klasik.' },
+          { title: 'Kanvas Premium', desc: 'Tekstur anyaman kanvas dengan warna tahan lama. Memberi kesan lukisan pada foto Anda.' },
+        ].map((m) => (
+          <div key={m.title} class="text-center p-6">
+            <h4 class="font-serif font-semibold text-lg">{m.title}</h4>
+            <p class="mt-3 text-sm text-accent">{m.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container-custom">
+      <h3 class="text-2xl font-serif font-semibold text-center mb-8">Yang Sering Ditanyakan</h3>
+      <div class="max-w-3xl mx-auto space-y-4">
+        {[
+          { q: 'Berapa resolusi foto yang dibutuhkan?', a: 'Semakin besar ukuran cetak, semakin tinggi resolusi yang dibutuhkan. Untuk cetak 4R minimal 1200x1800 px, untuk 10R minimal 3000x3600 px.' },
+          { q: 'Apakah bisa cetak dari foto lama yang buram?', a: 'Kami bisa mencoba, namun hasil tergantung kualitas foto asli. Untuk hasil terbaik, disarankan menggunakan foto dengan resolusi tinggi.' },
+          { q: 'Berapa lama proses cetak foto?', a: 'Cetak foto standar selesai dalam 1-2 jam. Untuk kanvas dan album foto, estimasi 2-4 hari kerja.' },
+          { q: 'Apakah ada minimal pemesanan?', a: 'Tidak ada minimal pemesanan untuk cetak foto. Anda bisa cetak 1 lembar pun.' },
+        ].map((faq, i) => (
+          <details class="group border border-border rounded-sm">
+            <summary class="flex items-center justify-between p-4 cursor-pointer text-sm font-medium hover:bg-paper-dark transition-colors">
+              {faq.q}
+              <svg class="w-4 h-4 text-accent group-open:rotate-180 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </summary>
+            <div class="p-4 pt-0 text-sm text-accent">
+              <p class="mt-2">{faq.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>

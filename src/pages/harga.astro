@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import Card from '../components/ui/Card.astro';
+import CTA from '../components/sections/CTA.astro';
+import { breadcrumbSchema } from '../lib/schema';
+
+const breadcrumbs = [
+  { name: 'Beranda', url: 'https://percetakan.citapen.com/' },
+  { name: 'Estimasi Harga', url: 'https://percetakan.citapen.com/harga' },
+];
+---
+
+<BaseLayout
+  title="Estimasi Harga Cetak Undangan & Foto"
+  description="Lihat estimasi harga cetak undangan dan foto di Citapen Printing. Hubungi kami untuk penawaran terbaik sesuai kebutuhan Anda."
+  breadcrumbs={breadcrumbs}
+  jsonLd={[breadcrumbSchema(breadcrumbs)]}
+>
+  <section class="section-padding border-b border-border">
+    <div class="container-custom">
+      <SectionHeading
+        tag="Estimasi"
+        title="Perkiraan Harga"
+        description="Harga di bawah adalah estimasi umum. Untuk penawaran akurat sesuai spesifikasi pesanan Anda, silakan hubungi tim kami."
+      />
+
+      <div class="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div>
+          <h3 class="text-2xl font-serif font-semibold mb-8">Undangan</h3>
+          <div class="space-y-4">
+            {[
+              { item: 'Undangan Pernikahan (Digital Print)', range: 'Rp 3.000 - Rp 8.000/pcs' },
+              { item: 'Undangan Pernikahan (Offset)', range: 'Rp 2.000 - Rp 5.000/pcs' },
+              { item: 'Undangan dengan Hot Stamping', range: 'Rp 7.000 - Rp 15.000/pcs' },
+              { item: 'Undangan Standing / Lipat', range: 'Rp 5.000 - Rp 12.000/pcs' },
+              { item: 'Kartu Ucapan / Thank You Card', range: 'Rp 2.000 - Rp 5.000/pcs' },
+              { item: 'Amplop Custom', range: 'Rp 1.500 - Rp 4.000/pcs' },
+            ].map((item) => (
+              <div class="flex items-center justify-between py-3 border-b border-border-light">
+                <span class="text-sm text-ink">{item.item}</span>
+                <span class="text-sm font-medium text-accent">{item.range}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-2xl font-serif font-semibold mb-8">Cetak Foto</h3>
+          <div class="space-y-4">
+            {[
+              { item: 'Cetak Foto 4R', range: 'Rp 7.000/lembar' },
+              { item: 'Cetak Foto 6R', range: 'Rp 15.000/lembar' },
+              { item: 'Cetak Foto 8R', range: 'Rp 25.000/lembar' },
+              { item: 'Cetak Foto 10R', range: 'Rp 40.000/lembar' },
+              { item: 'Cetak Foto 12R', range: 'Rp 60.000/lembar' },
+              { item: 'Cetak Kanvas (40x60cm)', range: 'Rp 150.000 - Rp 250.000' },
+              { item: 'Album Foto Hardcover', range: 'Rp 200.000 - Rp 500.000' },
+              { item: 'Bingkai Foto Custom', range: 'Rp 75.000 - Rp 200.000' },
+            ].map((item) => (
+              <div class="flex items-center justify-between py-3 border-b border-border-light">
+                <span class="text-sm text-ink">{item.item}</span>
+                <span class="text-sm font-medium text-accent">{item.range}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12 p-6 border border-accent rounded-sm bg-accent">
+        <p class="text-sm text-paper">
+          <strong>Catatan:</strong> Harga dapat berbeda tergantung pada jumlah pemesanan, jenis kertas, ukuran, dan tingkat kerumitan desain.
+          Hubungi kami untuk konsultasi gratis dan mendapatkan penawaran harga terbaik.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container-custom max-w-2xl mx-auto">
+      <h3 class="text-2xl font-serif font-semibold text-center mb-8">Form Estimasi Cepat</h3>
+      <p class="text-center text-sm text-accent mb-8">Isi form di bawah ini dan kami akan mengirimkan estimasi harga melalui WhatsApp dalam 1x24 jam.</p>
+      <form class="space-y-5" action="#" method="POST">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div>
+            <label for="name" class="block text-sm font-medium text-ink mb-1">Nama *</label>
+            <input type="text" id="name" required class="w-full rounded-sm border border-border bg-paper px-4 py-2.5 text-sm text-ink placeholder:text-accent/50 focus:outline-none focus:border-accent transition-colors" placeholder="Nama lengkap" />
+          </div>
+          <div>
+            <label for="phone" class="block text-sm font-medium text-ink mb-1">No. WhatsApp *</label>
+            <input type="tel" id="phone" required class="w-full rounded-sm border border-border bg-paper px-4 py-2.5 text-sm text-ink placeholder:text-accent/50 focus:outline-none focus:border-accent transition-colors" placeholder="08xxxxxxxxxx" />
+          </div>
+        </div>
+        <div>
+          <label for="service" class="block text-sm font-medium text-ink mb-1">Layanan yang diminati *</label>
+          <select id="service" required class="w-full rounded-sm border border-border bg-paper px-4 py-2.5 text-sm text-ink focus:outline-none focus:border-accent transition-colors">
+            <option value="">Pilih layanan...</option>
+            <option value="undangan">Cetak Undangan</option>
+            <option value="foto">Cetak Foto</option>
+            <option value="both">Undangan & Foto</option>
+            <option value="other">Lainnya</option>
+          </select>
+        </div>
+        <div>
+          <label for="qty" class="block text-sm font-medium text-ink mb-1">Estimasi jumlah</label>
+          <input type="number" id="qty" class="w-full rounded-sm border border-border bg-paper px-4 py-2.5 text-sm text-ink placeholder:text-accent/50 focus:outline-none focus:border-accent transition-colors" placeholder="Contoh: 100 pcs" />
+        </div>
+        <div>
+          <label for="notes" class="block text-sm font-medium text-ink mb-1">Catatan tambahan</label>
+          <textarea id="notes" rows="3" class="w-full rounded-sm border border-border bg-paper px-4 py-2.5 text-sm text-ink placeholder:text-accent/50 focus:outline-none focus:border-accent transition-colors resize-y" placeholder="Jelaskan kebutuhan Anda..."></textarea>
+        </div>
+        <button type="submit" class="w-full rounded-sm border border-accent bg-accent px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-accent-light">
+          Kirim & Dapatkan Estimasi via WhatsApp
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>
+

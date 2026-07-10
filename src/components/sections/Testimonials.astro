@@ -1,0 +1,68 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+import Card from '../ui/Card.astro';
+
+const testimonials = [
+  {
+    name: 'Rina & Andi',
+    text: 'Undangan pernikahan kami jadi jauh lebih cantik dari yang dibayangkan! Detail cetakannya rapi, kertasnya berkualitas, dan pengirimannya tepat waktu. Terima kasih Citapen Printing!',
+    rating: 5,
+    label: 'Undangan Pernikahan',
+  },
+  {
+    name: 'Bu Dewi',
+    text: 'Cetak foto keluarga untuk album kenangan hasilnya sangat memuaskan. Warnanya akurat dan bahannya bagus. Pasti akan order lagi untuk kebutuhan cetak lainnya.',
+    rating: 5,
+    label: 'Cetak Foto',
+  },
+  {
+    name: 'Mas Hendra',
+    text: 'Sudah beberapa kali cetak undangan di sini, hasilnya selalu konsisten bagus. Proses konsultasinya juga sangat membantu dalam memilih bahan dan desain.',
+    rating: 5,
+    label: 'Cetak Undangan',
+  },
+];
+---
+
+<section class="section-padding border-b border-border">
+  <div class="container-custom">
+    <SectionHeading
+      tag="Testimoni"
+      title="Apa Kata Pelanggan"
+      description="Kepuasan pelanggan adalah prioritas utama kami. Berikut beberapa cerita dari mereka yang sudah mempercayakan kebutuhan cetaknya."
+    />
+
+    <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+      {testimonials.map((t) => (
+        <Card>
+          <div class="flex gap-1 mb-4">
+            {Array.from({ length: t.rating }).map((_) => (
+              <svg key={_} class="w-4 h-4 text-gold" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              </svg>
+            ))}
+          </div>
+          <blockquote class="text-sm text-accent leading-relaxed">
+            "{t.text}"
+          </blockquote>
+          <div class="mt-4 pt-4 border-t border-border">
+            <p class="text-sm font-semibold text-ink">{t.name}</p>
+            <p class="text-xs text-accent">{t.label}</p>
+          </div>
+        </Card>
+      ))}
+    </div>
+
+    <div class="mt-12 text-center">
+      <a
+        href="/testimoni"
+        class="inline-flex items-center gap-2 text-sm font-medium text-accent no-underline hover:underline"
+      >
+        Baca Semua Testimoni
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

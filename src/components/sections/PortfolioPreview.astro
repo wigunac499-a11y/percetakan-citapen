@@ -1,0 +1,52 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+
+const seeds = ['undangan-preview-1', 'foto-preview-1', 'undangan-preview-2'];
+const categories = ['Undangan', 'Cetak Foto', 'Undangan'];
+const titles = ['Undangan Pernikahan Rina & Andi', 'Album Foto Keluarga', 'Undangan Akad Sarah'];
+---
+
+<section class="section-padding border-b border-border">
+  <div class="container-custom">
+    <SectionHeading
+      tag="Portofolio"
+      title="Hasil Karya Terbaru"
+      description="Setiap cetakan adalah karya — lihat langsung hasil kerja kami dari pelanggan yang sudah mempercayakan momen spesialnya."
+    />
+
+    <div class="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {seeds.map((seed, i) => (
+        <div class="group relative aspect-[3/4] overflow-hidden border border-border bg-paper-dark">
+          <img
+            src={`https://picsum.photos/seed/${seed}/600/800`}
+            alt={titles[i]}
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div class="absolute bottom-0 left-0 right-0 p-5">
+              <span class="text-xs font-mono uppercase tracking-wider text-white/70">
+                {categories[i]}
+              </span>
+              <h3 class="text-lg font-serif font-semibold text-white mt-1">
+                {titles[i]}
+              </h3>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-12 text-center">
+      <a
+        href="/portofolio"
+        class="inline-flex items-center gap-2 rounded-sm border border-accent px-6 py-3 text-sm font-medium text-accent no-underline transition-all hover:bg-accent hover:text-white"
+      >
+        Lihat Semua Portofolio
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

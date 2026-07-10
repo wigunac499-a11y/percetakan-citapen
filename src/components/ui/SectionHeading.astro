@@ -1,0 +1,24 @@
+---
+interface Props {
+  tag?: string;
+  title: string;
+  description?: string;
+  align?: 'left' | 'center';
+}
+
+const { tag, title, description, align = 'center' } = Astro.props;
+---
+
+<div class={`max-w-2xl ${align === 'center' ? 'mx-auto text-center' : ''}`}>
+  {tag && (
+    <span class="inline-block font-mono text-xs uppercase tracking-[0.2em] text-accent mb-4">
+      {tag}
+    </span>
+  )}
+  <h2 class="text-3xl md:text-4xl lg:text-5xl text-balance">{title}</h2>
+  {description && (
+    <p class="mt-4 text-ink text-base md:text-lg leading-relaxed text-pretty">
+      {description}
+    </p>
+  )}
+</div>

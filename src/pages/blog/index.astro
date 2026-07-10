@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeading from '../../components/ui/SectionHeading.astro';
+import Card from '../../components/ui/Card.astro';
+import CTA from '../../components/sections/CTA.astro';
+import { breadcrumbSchema } from '../../lib/schema';
+import { getCollection } from 'astro:content';
+
+const breadcrumbs = [
+  { name: 'Beranda', url: 'https://percetakan.citapen.com/' },
+  { name: 'Blog', url: 'https://percetakan.citapen.com/blog' },
+];
+
+const posts = await getCollection('blog', ({ data }) => !data.draft);
+posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+---
+
+<BaseLayout
+  title="Blog Percetakan & Tips"
+  description="Artikel edukatif seputar percetakan undangan, cetak foto, tips memilih kertas, dan panduan lengkap untuk hasil cetakan terbaik."
+  breadcrumbs={breadcrumbs}
+  jsonLd={[breadcrumbSchema(breadcrumbs)]}
+>
+  <section class="section-padding border-b border-border">
+    <div class="container-custom">
+      <SectionHeading
+        tag="Blog"
+        title="Artikel & Tips"
+        description="Temukan informasi bermanfaat seputar percetakan undangan, cetak foto, dan tips memilih bahan terbaik untuk kebutuhan Anda."
+      />
+
+      <div class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {posts.map((post) => (
+          <a
+            key={post.id}
+            href={`/blog/${post.id}`}
+            class="group no-underline"
+          >
+            <Card className="h-full flex flex-col">
+              {post.data.image ? (
+                <img src={post.data.image} alt={post.data.title} class="w-full aspect-video object-cover rounded-sm mb-4" />
+              ) : (
+                <div class="w-full aspect-video border border-border bg-paper-dark flex items-center justify-center mb-4">
+                  <span class="font-serif text-4xl text-muted">✦</span>
+                </div>
+              )}
+              <div class="flex-1 flex flex-col">
+                <div class="flex flex-wrap gap-2 mb-3">
+                  {post.data.tags?.slice(0, 2).map((tag) => (
+                    <span class="inline-block font-mono text-[10px] uppercase tracking-wider text-accent border border-accent/30 px-2 py-0.5 rounded-sm">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <h3 class="font-serif text-lg font-semibold group-hover:text-accent transition-colors">
+                  {post.data.title}
+                </h3>
+                <p class="mt-2 text-sm text-accent line-clamp-2 flex-1">
+                  {post.data.description}
+                </p>
+                <p class="mt-4 text-xs text-accent font-mono">
+                  {post.data.pubDate.toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}
+                </p>
+              </div>
+            </Card>
+          </a>
+        ))}
+      </div>
+
+      {posts.length === 0 && (
+        <p class="text-center text-accent mt-16">Belum ada artikel. Nantikan update terbaru!</p>
+      )}
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>

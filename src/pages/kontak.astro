@@ -1,0 +1,154 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import { breadcrumbSchema, localBusinessSchema } from '../lib/schema';
+
+const breadcrumbs = [
+  { name: 'Beranda', url: 'https://percetakan.citapen.com/' },
+  { name: 'Kontak', url: 'https://percetakan.citapen.com/kontak' },
+];
+---
+
+<BaseLayout
+  title="Kontak Citapen Printing"
+  description="Hubungi Citapen Printing untuk konsultasi dan pemesanan. Tersedia layanan chat WhatsApp, telepon, email, atau kunjungan langsung ke studio di Bandung Barat."
+  breadcrumbs={breadcrumbs}
+  jsonLd={[
+    breadcrumbSchema(breadcrumbs),
+    localBusinessSchema({
+      name: 'Citapen Printing',
+      description: 'Kontak dan lokasi Citapen Printing — percetakan undangan dan foto di Bandung Barat.',
+      url: 'https://percetakan.citapen.com',
+      telephone: '+6281234567890',
+      address: {
+        street: 'Jl. Raya Citapen No. 123',
+        city: 'Bandung Barat',
+        region: 'Jawa Barat',
+        postalCode: '40512',
+        country: 'ID',
+      },
+      geo: { latitude: -6.865, longitude: 107.525 },
+      openingHours: ['Senin-Sabtu 08:00-17:00'],
+    }),
+  ]}
+>
+  <section class="section-padding border-b border-border">
+    <div class="container-custom">
+      <SectionHeading
+        tag="Kontak"
+        title="Hubungi Kami"
+        description="Ada pertanyaan atau ingin konsultasi? Tim kami siap membantu. Pilih cara yang paling nyaman untuk Anda."
+      />
+
+      <div class="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div>
+          <div class="space-y-8">
+            {[
+              {
+                icon: 'M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z',
+                title: 'WhatsApp',
+                content: '+62 812-3456-7890',
+                href: 'https://wa.me/6281234567890',
+                label: 'Chat via WhatsApp',
+              },
+              {
+                icon: 'M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z M22 6l-10 7L2 6',
+                title: 'Email',
+                content: 'info@citapenprinting.com',
+                href: 'mailto:info@citapenprinting.com',
+                label: 'Kirim Email',
+              },
+              {
+                icon: 'M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z M12 10a3 3 0 100-6 3 3 0 000 6z',
+                title: 'Alamat',
+                content: 'Jl. Raya Citapen No. 123, Bandung Barat, Jawa Barat 40512',
+                label: 'Lihat di Google Maps',
+                href: '#',
+              },
+              {
+                icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z',
+                title: 'Jam Operasional',
+                content: 'Senin - Sabtu: 08:00 - 17:00\nMinggu & Hari Besar: Tutup',
+              },
+            ].map((c) => (
+              <div key={c.title} class="flex gap-4">
+                <div class="shrink-0 w-10 h-10 rounded-sm border border-border bg-paper-dark flex items-center justify-center">
+                  <svg class="w-5 h-5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d={c.icon} />
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="text-sm font-semibold">{c.title}</h4>
+                  <p class="text-sm text-accent mt-0.5 whitespace-pre-line">{c.content}</p>
+                  {c.href && (
+                    <a href={c.href} class="inline-flex items-center gap-1 text-xs font-medium text-accent no-underline hover:underline mt-1">
+                      {c.label}
+                      <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <form class="space-y-5" action="#" method="POST">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label for="name" class="block text-sm font-medium text-ink mb-1">Nama *</label>
+                <input type="text" id="name" required class="w-full rounded-sm border border-border bg-paper px-4 py-2.5 text-sm text-ink placeholder:text-accent/50 focus:outline-none focus:border-accent transition-colors" placeholder="Nama lengkap" />
+              </div>
+              <div>
+                <label for="phone" class="block text-sm font-medium text-ink mb-1">No. WhatsApp *</label>
+                <input type="tel" id="phone" required class="w-full rounded-sm border border-border bg-paper px-4 py-2.5 text-sm text-ink placeholder:text-accent/50 focus:outline-none focus:border-accent transition-colors" placeholder="08xxxxxxxxxx" />
+              </div>
+            </div>
+            <div>
+              <label for="subject" class="block text-sm font-medium text-ink mb-1">Subjek *</label>
+              <select id="subject" required class="w-full rounded-sm border border-border bg-paper px-4 py-2.5 text-sm text-ink focus:outline-none focus:border-accent transition-colors">
+                <option value="">Pilih subjek...</option>
+                <option value="undangan">Pemesanan Undangan</option>
+                <option value="foto">Pemesanan Cetak Foto</option>
+                <option value="konsultasi">Konsultasi</option>
+                <option value="lainnya">Lainnya</option>
+              </select>
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-medium text-ink mb-1">Pesan *</label>
+              <textarea id="message" required rows="5" class="w-full rounded-sm border border-border bg-paper px-4 py-2.5 text-sm text-ink placeholder:text-accent/50 focus:outline-none focus:border-accent transition-colors resize-y" placeholder="Jelaskan kebutuhan Anda..."></textarea>
+            </div>
+            <button type="submit" class="w-full rounded-sm border border-accent bg-accent px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-accent-light">
+              Kirim Pesan
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container-custom">
+      <h3 class="text-2xl font-serif font-semibold text-center mb-8">Lokasi Kami</h3>
+      <div class="aspect-[21/9] border border-border overflow-hidden rounded-sm">
+        <iframe
+          src="https://www.openstreetmap.org/export/embed.html?bbox=107.5%2C-6.885%2C107.55%2C-6.845&layer=mapnik&marker=-6.865%2C107.525"
+          width="100%"
+          height="100%"
+          style="border:0; min-height: 350px;"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Peta lokasi Citapen Printing — Jl. Raya Citapen No. 123, Bandung Barat"
+        ></iframe>
+      </div>
+      <p class="mt-2 text-xs text-accent text-center">
+        <a href="https://www.openstreetmap.org/?mlat=-6.865&mlon=107.525#map=15/-6.865/107.525" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline no-underline">
+          Buka peta lebih besar
+        </a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>

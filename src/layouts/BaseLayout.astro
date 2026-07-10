@@ -1,0 +1,48 @@
+---
+import SEO from '../components/seo/SEO.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  ogType?: string;
+  noIndex?: boolean;
+  jsonLd?: Record<string, unknown>[];
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage,
+  ogType,
+  noIndex,
+  jsonLd,
+} = Astro.props;
+---
+
+<SEO
+  title={title}
+  description={description}
+  canonical={canonical}
+  ogImage={ogImage}
+  ogType={ogType}
+  noIndex={noIndex}
+  jsonLd={jsonLd}
+>
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  </Fragment>
+</SEO>
+
+<Header />
+<main>
+  <slot />
+</main>
+<Footer />
