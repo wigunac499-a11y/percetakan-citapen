@@ -15,8 +15,10 @@ const titles = ['Undangan Pernikahan Rina & Andi', 'Album Foto Keluarga', 'Undan
     />
 
     <div class="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {seeds.map((seed, i) => (
-        <div class="group relative rounded-xl overflow-hidden border border-border bg-white card-shadow">
+      {seeds.map((seed, i) => {
+        const delay = `anim-delay-${i + 1}`;
+        return (
+        <div key={seed} data-anim="anim-slide-up" class={`${delay} group relative rounded-xl overflow-hidden border border-border bg-white card-shadow`}>
           <div class="aspect-[4/5] overflow-hidden">
             <img
               src={`https://picsum.photos/seed/${seed}/600/750`}
@@ -30,7 +32,8 @@ const titles = ['Undangan Pernikahan Rina & Andi', 'Album Foto Keluarga', 'Undan
             <h3 class="text-base font-bold text-ink mt-0.5">{titles[i]}</h3>
           </div>
         </div>
-      ))}
+        );
+      })}
     </div>
 
     <div class="mt-12 text-center">
