@@ -1,0 +1,20 @@
+# Robots.txt for Citapen Printing
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# AI Crawlers - allow indexing
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+Sitemap: https://percetakan.citapen.com/sitemap-index.xml
